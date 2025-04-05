@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class SaiBehavior : MonoBehaviour
 {
-    protected void Awake()
+    protected virtual void Awake()
     {
         this.LoadComponents();
     }
 
-    protected void Reset()
+    protected virtual void Reset()
     {
         this.LoadComponents();
     }
