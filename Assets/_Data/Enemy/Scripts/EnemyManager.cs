@@ -35,7 +35,7 @@ public class EnemyManager : SaiBehavior
     {
         foreach (EnemyCtrl enemy in this.enemies)
         {
-            Debug.Log(enemy.name + ": " + enemy.weight);
+            //Debug.Log(enemy.name + ": " + enemy.weight);
         }
     }
 
@@ -59,7 +59,7 @@ public class EnemyManager : SaiBehavior
             }
         }
 
-        Debug.Log("Min Enemy:" + this.minEnemy.name + " - " + this.minEnemy.weight);
-        Debug.Log("Max Enemy:" + this.maxEnemy.name + " - " + this.maxEnemy.weight);
+        //Debug.Log("Min Enemy:" + this.minEnemy.name + " - " + this.minEnemy.weight);
+        //Debug.Log("Max Enemy:" + this.maxEnemy.name + " - " + this.maxEnemy.weight);
     }
 }
