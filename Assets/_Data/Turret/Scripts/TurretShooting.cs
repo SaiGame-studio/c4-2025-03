@@ -63,7 +63,7 @@ public class TurretShooting : SaiBehaviour
 
         if (this.target == null) return;
 
-        Debug.Log("Shooting");
+        //Debug.Log("Shooting");
 
         FirePoint firePoint = this.GetFirePoint();
         Vector3 rotatorDirection = this.ctrl.Rotator.transform.forward;
