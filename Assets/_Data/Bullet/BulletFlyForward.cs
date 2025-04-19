@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletFlyForward : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 20f;
 
     void Update()
     {

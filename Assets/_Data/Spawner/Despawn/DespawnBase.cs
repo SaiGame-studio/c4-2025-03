@@ -1,5 +1,5 @@
 
-public abstract class DespawnBase : SaiBehavior 
+public abstract class DespawnBase : SaiBehaviour 
 {
     public abstract void DoDespawn();
 }

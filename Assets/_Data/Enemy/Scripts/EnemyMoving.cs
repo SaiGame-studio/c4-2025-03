@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class EnemyMoving : SaiBehavior
+public class EnemyMoving : SaiBehaviour
 {
-    [SerializeField] protected Point pointToGo;
     [SerializeField] protected EnemyCtrl ctrl;
+    [SerializeField] protected Point pointToGo;
     [SerializeField] protected bool IsWalking = true;
     [SerializeField] protected float targetDistance = 0;
     [SerializeField] protected float stopDistance = 1;
@@ -30,7 +30,7 @@ public class EnemyMoving : SaiBehavior
 
     protected virtual void MoveToTarget()
     {
-        if (this.pointToGo == null) return;
+        if (!this.CanMove()) return;
 
         Vector3 postion = this.pointToGo.transform.position;
 
@@ -47,6 +47,20 @@ public class EnemyMoving : SaiBehavior
         }
     }
 
+    protected virtual bool CanMove()
+    {
+        bool canMove = true;
+        if (this.pointToGo == null) canMove = false;
+        if (!this.ctrl.DamageReceiver.IsAlive()) canMove = false;
+
+        return canMove;
+    }
+
+    protected virtual void StopMoving()
+    {
+        this.ctrl.Agent.isStopped = true;
+    }
+
     protected virtual void UpdateAnimator()
     {
         this.IsWalking = !this.ctrl.Agent.isStopped;
@@ -56,5 +70,10 @@ public class EnemyMoving : SaiBehavior
     protected virtual void LoadNextPoint()
     {
         this.pointToGo = this.pointToGo.NextPoint;
+    }
+
+    public virtual void SetPointToGo(Point point)
+    {
+        this.pointToGo = point;
     }
 }
