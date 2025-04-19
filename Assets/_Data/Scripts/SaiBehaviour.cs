@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SaiBehavior : MonoBehaviour
+public class SaiBehaviour : MonoBehaviour
 {
     protected virtual void Start()
     {
@@ -20,5 +20,10 @@ public class SaiBehavior : MonoBehaviour
     protected virtual void LoadComponents()
     {
         //TODO: for override
+    }
+
+    public virtual void SetActive(bool status)
+    {
+        gameObject.SetActive(status);
     }
 }

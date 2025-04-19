@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerInfo : SaiBehavior
+public class PlayerInfo : SaiBehaviour
 {
     //Data type, variable, data (value)
     //Operator: = + - * /

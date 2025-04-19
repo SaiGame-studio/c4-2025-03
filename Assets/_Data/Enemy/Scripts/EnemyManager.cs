@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : SaiBehavior
+public class EnemyManager : SaiBehaviour
 {
     public EnemyCtrl minEnemy;
     public EnemyCtrl maxEnemy;

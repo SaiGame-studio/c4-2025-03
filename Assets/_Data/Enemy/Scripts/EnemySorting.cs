@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySorting : SaiBehavior
+public class EnemySorting : SaiBehaviour
 {
     [SerializeField] protected EnemyManager manager;
     [SerializeField] protected List<EnemyCtrl> sortEnemies;

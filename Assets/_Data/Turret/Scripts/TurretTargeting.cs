@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretTargeting : SaiBehavior
+public class TurretTargeting : SaiBehaviour
 {
     [SerializeField] protected Targetable nearest;
     public Targetable Nearest => nearest;

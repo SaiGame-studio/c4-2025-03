@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretShooting : SaiBehavior
+public class TurretShooting : SaiBehaviour
 {
     [SerializeField] protected TurretCtrl ctrl;
     [SerializeField] protected Targetable target;
@@ -10,7 +10,7 @@ public class TurretShooting : SaiBehavior
     [SerializeField] protected float shootSpeed = 1f;
     [SerializeField] protected int currentFirePoint = 0;
 
-    public Transform bulletPrefab;
+    public BulletCtrl bulletPrefab;
 
     protected override void Start()
     {
@@ -68,8 +68,12 @@ public class TurretShooting : SaiBehavior
         FirePoint firePoint = this.GetFirePoint();
         Vector3 rotatorDirection = this.ctrl.Rotator.transform.forward;
 
-        Transform newBullet = Instantiate(this.bulletPrefab, firePoint.transform.position, Quaternion.identity);
-        newBullet.rotation = Quaternion.LookRotation(rotatorDirection.normalized);
+        //Transform oldBullet = Instantiate(this.oldBulletPrefab, firePoint.transform.position, Quaternion.identity);
+        //oldBullet.rotation = Quaternion.LookRotation(rotatorDirection.normalized);
+
+        BulletCtrl newBullet = BulletSpawnerCtrl.Instance.Spawner.Spawn(this.bulletPrefab, firePoint.transform.position);
+        newBullet.transform.rotation = Quaternion.LookRotation(rotatorDirection.normalized);
+        newBullet.SetActive(true);
     }
 
     protected virtual FirePoint GetFirePoint()

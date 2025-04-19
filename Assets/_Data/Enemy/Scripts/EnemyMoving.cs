@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMoving : SaiBehavior
+public class EnemyMoving : SaiBehaviour
 {
     [SerializeField] protected Point pointToGo;
     [SerializeField] protected EnemyCtrl ctrl;
