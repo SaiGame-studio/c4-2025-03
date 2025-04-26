@@ -32,7 +32,7 @@ public class EnemyMoving : SaiBehaviour
     {
         if (!this.CanMove())
         {
-            //this.StopMoving();
+            this.StopMoving();
             return;
         }
 

@@ -15,6 +15,7 @@ public class SaiBehaviour : MonoBehaviour
     protected virtual void Reset()
     {
         this.LoadComponents();
+        this.ResetValue();
     }
 
     protected virtual void LoadComponents()
@@ -25,5 +26,10 @@ public class SaiBehaviour : MonoBehaviour
     public virtual void SetActive(bool status)
     {
         gameObject.SetActive(status);
+    }
+
+    protected virtual void ResetValue()
+    {
+        //For override
     }
 }
