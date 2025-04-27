@@ -30,7 +30,11 @@ public class EnemyMoving : SaiBehaviour
 
     protected virtual void MoveToTarget()
     {
-        if (!this.CanMove()) return;
+        if (!this.CanMove())
+        {
+            //this.StopMoving();
+            return;
+        }
 
         Vector3 postion = this.pointToGo.transform.position;
 
