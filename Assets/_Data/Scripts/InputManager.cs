@@ -4,20 +4,22 @@ public class InputManager : SaiSingleton<InputManager>
 {
     [SerializeField] protected bool isAiming = false;
 
-    protected float attackHold = 0;
-    protected float attackLightLimit = 0.5f;
-    protected bool isAttackLight = false;
-    protected bool isAttackHeavy = false;
+    [SerializeField] protected bool isAttackLight = false;
+    [SerializeField] protected bool isAttackHeavy = false;
+    [SerializeField] protected bool airmToogle = false;
 
     private void Update()
     {
         this.CheckAiming();
-        //this.CheckAttacking();
+        this.CheckAttacking();
     }
 
     protected virtual void CheckAiming()
     {
-        this.isAiming = Input.GetMouseButton(1);
+        //this.isAiming = Input.GetMouseButton(1);
+
+        if (Input.GetKeyUp(KeyCode.LeftControl)) this.airmToogle = !this.airmToogle;
+        this.isAiming = this.airmToogle;
     }
 
     protected virtual void CheckAttacking()
@@ -29,20 +31,9 @@ public class InputManager : SaiSingleton<InputManager>
             return;
         }
 
-        if (Input.GetMouseButton(0)) this.attackHold += Time.deltaTime;
+        this.isAttackLight = Input.GetMouseButton(0);
+        this.isAttackHeavy = Input.GetMouseButton(1);
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            this.isAttackLight = this.attackHold < this.attackLightLimit;
-            this.attackHold = 0;
-        }
-        else
-        {
-            this.isAttackLight = false;
-        }
-
-        if (this.attackHold > this.attackLightLimit) this.isAttackHeavy = true;
-        else this.isAttackHeavy = false;
     }
 
     public virtual bool IsAttackLight()

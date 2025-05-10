@@ -156,6 +156,9 @@ MonoBehaviour:
   turretTargeting: {fileID: 1367909237165397932}
   model: {fileID: 8407304145311726610}
   rotator: {fileID: 198000886225672987}
+  firePoints:
+  - {fileID: 6853522517072707518}
+  - {fileID: 3028325177255157804}
 --- !u!1 &4072074453370534437
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +207,8 @@ MonoBehaviour:
   target: {fileID: 0}
   rotationSpeed: 4
   shootSpeed: 1
+  currentFirePoint: 0
+  bulletPrefab: {fileID: 0}
 --- !u!1 &4112495278482804975
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +221,7 @@ GameObject:
   - component: {fileID: 1367909237165397932}
   - component: {fileID: 4474048200754480147}
   - component: {fileID: 774459276264747338}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TurretTargeting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +276,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 9
+  m_Radius: 19
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &774459276264747338
 Rigidbody:
@@ -556,14 +561,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7965454107583831419}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.0018905466, y: -0.5362328, z: 0.062998906, w: 0.8417137}
   m_LocalPosition: {x: 0.010681153, y: 6.7864304, z: -0.47136948}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6461978030426583043}
   m_Father: {fileID: 8407304145311726610}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.691, y: -64.8, z: 6.218}
 --- !u!33 &8165114948691527069
 MeshFilter:
   m_ObjectHideFlags: 0

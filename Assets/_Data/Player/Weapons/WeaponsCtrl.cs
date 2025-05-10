@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponsCtrl : MonoBehaviour
+public class WeaponsCtrl : SaiBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] protected List<WeaponCtrl> weapons;
+
+    protected override void LoadComponents()
     {
-        
+        base.LoadComponents();
+        this.LoadWeapons();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void LoadWeapons()
     {
-        
+        if (this.weapons.Count > 0) return;
+        this.weapons = new List<WeaponCtrl>(GetComponentsInChildren<WeaponCtrl>());
+        Debug.Log(transform.name + ": LoadWeapons", gameObject);
+    }
+
+    public virtual WeaponCtrl GetCurrent()
+    {
+        return this.weapons[0];
     }
 }
