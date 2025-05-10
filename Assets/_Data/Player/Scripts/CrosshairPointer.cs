@@ -6,7 +6,7 @@ public class CrosshairPointer : SaiBehaviour
     protected Collider hitObj;
     [SerializeField] LayerMask layerMask = -1;
 
-    protected virtual void LateUpdate()
+    protected virtual void Update()
     {
         this.Pointing();
     }

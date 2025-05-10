@@ -7,6 +7,8 @@ using UnityEngine.Animations.Rigging;
 public class PlayerCtrl : SaiBehaviour
 {
     [SerializeField] protected WeaponsCtrl weaponsCtrl;
+    public WeaponsCtrl WeaponsCtrl => weaponsCtrl;
+
 
     [SerializeField] protected vThirdPersonCamera thirdPersonCamera;
     public vThirdPersonCamera ThirdPersonCamera => thirdPersonCamera;
