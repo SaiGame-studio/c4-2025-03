@@ -12,10 +12,9 @@ public class AttackLight : AttackAbstract
     protected override void Attacking()
     {
         this.timer += Time.deltaTime;
+        if (!InputManager.Instance.IsAttackLight()) return;
         if (this.timer < this.delay) return;
         this.timer = 0;
-
-        if (!InputManager.Instance.IsAttackLight()) return;
 
         FirePoint firePoint = this.GetFirePoint();
 
