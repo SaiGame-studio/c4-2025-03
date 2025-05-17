@@ -3,9 +3,13 @@ using UnityEngine;
 public class DamageReceiver : SaiBehaviour
 {
     [Header("Damage Receiver")]
-    [SerializeField] protected int currentHp = 10;
-    [SerializeField] protected int maxHp = 7;
     [SerializeField] protected bool isAlive = true;
+
+    [SerializeField] protected int currentHp = 10;
+    public int CurrentHp => currentHp;
+
+    [SerializeField] protected int maxHp = 7;
+    public int MaxHp => maxHp;
 
     protected virtual void OnEnable()
     {
@@ -19,11 +23,16 @@ public class DamageReceiver : SaiBehaviour
 
     protected virtual void ApplyDamage(Collider trigger)
     {
+        if (!this.IsAlive()) return;
+
         BulletDamageSender damageSender = trigger.GetComponent<BulletDamageSender>();
         if (damageSender == null) return;
         damageSender.Despawn();
         this.Deduct(damageSender.GetDamage());
-        this.IsAlive();
+        if (!this.IsAlive())
+        {
+            this.OnDead();
+        }
     }
 
     protected virtual void Deduct(int damage)
@@ -42,5 +51,10 @@ public class DamageReceiver : SaiBehaviour
         if (this.currentHp <= 0) this.isAlive = false;
         else this.isAlive = true;
         return this.isAlive;
+    }
+
+    protected virtual void OnDead()
+    {
+        //Donothing
     }
 }

@@ -9,5 +9,6 @@ public class ItemProfileSO : ScriptableObject
     public InvCodeName invCodeName;
     public ItemCode itemCode;
     public string itemName;
+    public Sprite itemImage;
     public bool isStackable = false;
 }

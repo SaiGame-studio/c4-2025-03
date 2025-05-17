@@ -37,4 +37,9 @@ public class ItemInventory
         this.itemCount -= number;
         return true;
     }
+
+    public virtual string GetItemName()
+    {
+        return this.itemName;
+    }
 }

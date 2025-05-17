@@ -9,8 +9,8 @@ public class EnemyCtrl : PoolObj
     [SerializeField] protected Animator animator;
     public Animator Animator => animator;
 
-    [SerializeField] protected DamageReceiver damageReceiver;
-    public DamageReceiver DamageReceiver => damageReceiver;
+    [SerializeField] protected EnemyDamageReceiver damageReceiver;
+    public EnemyDamageReceiver DamageReceiver => damageReceiver;
 
     [SerializeField] protected EnemyMoving moving;
     public EnemyMoving Moving => moving;
@@ -35,7 +35,7 @@ public class EnemyCtrl : PoolObj
     protected virtual void LoadDamageReceiver()
     {
         if (this.damageReceiver != null) return;
-        this.damageReceiver = GetComponentInChildren<DamageReceiver>();
+        this.damageReceiver = GetComponentInChildren<EnemyDamageReceiver>();
         Debug.LogWarning(transform.name + ": LoadDamageReceiver", gameObject);
     }
 
