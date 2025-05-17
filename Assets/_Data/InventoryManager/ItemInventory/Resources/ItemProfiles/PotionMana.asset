@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cdb6d085a3a3094382e8668b1abee44, type: 3}
-  m_Name: Gold
+  m_Name: PotionMana
   m_EditorClassIdentifier: 
-  invCodeName: 1
-  itemCode: 1
-  itemName: Gold
-  itemImage: {fileID: 21300000, guid: afc1f4ecbdcff7748a784b17612054ab, type: 3}
+  invCodeName: 2
+  itemCode: 200
+  itemName: Potion Mana
+  itemImage: {fileID: 21300000, guid: b41c20f228db90a4b8a48d3585f54c4c, type: 3}
   isStackable: 1

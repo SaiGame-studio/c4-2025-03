@@ -8,6 +8,7 @@ public class InventoryTester : SaiBehaviour
     {
         base.Start();
         this.AddTestItems(ItemCode.Gold, 1000);
+        this.AddTestItems(ItemCode.Wand, 10);
     }
 
     [ProButton]

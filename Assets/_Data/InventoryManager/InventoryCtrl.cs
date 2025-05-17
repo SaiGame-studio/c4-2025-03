@@ -52,4 +52,9 @@ public abstract class InventoryCtrl : SaiBehaviour
 
         return null;
     }
+
+    public virtual ItemInventory FindItem(ItemCode itemCode)
+    {
+        return this.FindItemInInventory(itemCode);
+    }
 }

@@ -7,11 +7,19 @@ public class InputManager : SaiSingleton<InputManager>
     [SerializeField] protected bool isAttackLight = false;
     [SerializeField] protected bool isAttackHeavy = false;
     [SerializeField] protected bool airmToogle = false;
+    [SerializeField] protected bool isToogleInventory = false;
+    public bool IsToogleInventory => isToogleInventory;
 
     private void Update()
     {
         this.CheckAiming();
         this.CheckAttacking();
+        this.OpenInventory();
+    }
+
+    protected virtual void OpenInventory()
+    {
+        this.isToogleInventory = Input.GetKeyUp(KeyCode.I);
     }
 
     protected virtual void CheckAiming()

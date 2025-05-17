@@ -27,4 +27,16 @@ public class EnemyDamageReceiver : DamageReceiver
     {
         this.ctrl.Animator.SetBool("IsAlive", this.isAlive);
     }
+
+    protected override void OnDead()
+    {
+        base.OnDead();
+        this.DropItems();
+    }
+
+    protected virtual void DropItems()
+    {
+        ItemCode itemCode = ItemCode.Gold;
+        InventoryManager.Instance.AddItem(itemCode, 1);
+    }
 }
