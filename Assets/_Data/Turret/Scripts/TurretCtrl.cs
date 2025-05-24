@@ -13,6 +13,9 @@ public class TurretCtrl : SaiBehaviour
     [SerializeField] protected Transform rotator;
     public Transform Rotator => rotator;
 
+    [SerializeField] protected TowerLevel level;
+    public TowerLevel Level => level;
+
     [SerializeField] protected List<FirePoint> firePoints;
     public List<FirePoint> FirePoints => firePoints;
 
@@ -23,6 +26,14 @@ public class TurretCtrl : SaiBehaviour
         this.LoadTurretTargeting();
         this.LoadTurretShootings();
         this.LoadFirePoints();
+        this.LoadLevel();
+    }
+
+    protected virtual void LoadLevel()
+    {
+        if (this.level != null) return;
+        this.level = GetComponentInChildren<TowerLevel>();
+        Debug.Log(transform.name + ": LoadLevel", gameObject);
     }
 
     protected virtual void LoadTurretShootings()

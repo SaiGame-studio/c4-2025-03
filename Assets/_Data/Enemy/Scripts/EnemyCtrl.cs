@@ -70,5 +70,6 @@ public class EnemyCtrl : PoolObj
     protected virtual void Reborn()
     {
         this.model.transform.localPosition = Vector3.zero;
+        this.model.transform.localRotation = Quaternion.identity;
     }
 }

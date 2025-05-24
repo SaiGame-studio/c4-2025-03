@@ -21,7 +21,7 @@ public class TowerLevel : LevelAbstract
 
     protected override int GetCurrentExp()
     {
-        return this.towerCtrl.TurretShooting.KillCount;
+        return this.towerCtrl.TurretShooting.TotalKill;
     }
 
     protected override int GetNextLevelExp()

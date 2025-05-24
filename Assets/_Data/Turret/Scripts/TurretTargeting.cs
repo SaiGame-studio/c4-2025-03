@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class TurretTargeting : SaiBehaviour
 {
-    [SerializeField] protected Targetable nearest;
-    public Targetable Nearest => nearest;
+    [SerializeField] protected EnemyCtrl nearest;
+    public EnemyCtrl Nearest => nearest;
 
-    [SerializeField] protected List<Targetable> enemies;
+    [SerializeField] protected List<EnemyCtrl> enemies;
 
     protected virtual void FixedUpdate()
     {
@@ -25,24 +25,24 @@ public class TurretTargeting : SaiBehaviour
 
     protected virtual void AddEnemy(Collider other)
     {
-        //TODO: use EnemyCtrl, don't use Targetable
         Targetable targetable = other.GetComponent<Targetable>();
         if (targetable == null) return;
-        this.enemies.Add(targetable);
+        EnemyCtrl enemyCtrl = targetable.GetComponentInParent < EnemyCtrl > ();
+        this.enemies.Add(enemyCtrl);
     }
 
     protected virtual void RemoveEnemy(Collider other)
     {
-        Targetable targetable = other.GetComponent<Targetable>();
-        if (targetable == null) return;
-        this.enemies.Remove(targetable);
+        EnemyCtrl enemyCtrl = other.GetComponentInParent<EnemyCtrl>();
+        if (enemyCtrl == null) return;
+        this.enemies.Remove(enemyCtrl);
     }
 
     protected virtual void FindNearest()
     {
         float nearestDistance = Mathf.Infinity;
         float enemyDistance;
-        foreach (Targetable target in this.enemies)
+        foreach (EnemyCtrl target in this.enemies)
         {
 
             enemyDistance = Vector3.Distance(transform.position, target.transform.position);
