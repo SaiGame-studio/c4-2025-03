@@ -34,6 +34,7 @@ public class EnemiesSpawning : SaiBehaviour
 
         EnemyCtrl enemyPrefab = this.ctrl.Spawner.PoolPrefabs.GetByName("Archer");
         EnemyCtrl newEnemy = this.ctrl.Spawner.Spawn(enemyPrefab);
+        newEnemy.transform.position = transform.position;
         newEnemy.Moving.SetPointToGo(this.pointToStart);
         newEnemy.SetActive(true);
     }

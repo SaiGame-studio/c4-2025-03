@@ -5,12 +5,15 @@ using UnityEngine;
 public class TurretShooting : SaiBehaviour
 {
     [SerializeField] protected TurretCtrl ctrl;
-    [SerializeField] protected Targetable target;
+    [SerializeField] protected EnemyCtrl target;
     [SerializeField] protected float rotationSpeed = 4f;
     [SerializeField] protected float shootSpeed = 1f;
     [SerializeField] protected int currentFirePoint = 0;
 
     public BulletCtrl bulletPrefab;
+
+    [SerializeField] protected int totalKill = 0;
+    public int TotalKill  => totalKill ;
 
     protected override void Start()
     {
@@ -22,6 +25,7 @@ public class TurretShooting : SaiBehaviour
     protected virtual void FixedUpdate()
     {
         this.Looking();
+        this.IsTargetDead();
     }
 
     protected virtual void Looking()
@@ -82,5 +86,14 @@ public class TurretShooting : SaiBehaviour
         this.currentFirePoint++;
         if (this.currentFirePoint == this.ctrl.FirePoints.Count) this.currentFirePoint = 0;
         return firePoint;
+    }
+
+    protected virtual bool IsTargetDead()
+    {
+        if (this.target == null) return true;
+        if (this.target.DamageReceiver.IsAlive()) return false;
+        this.totalKill++;
+        this.target = null;
+        return true;
     }
 }

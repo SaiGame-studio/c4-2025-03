@@ -23,6 +23,7 @@ public class AttackHeavy : AttackAbstract
         Vector3 rotatorDirection = (startPoint - endPoint).normalized;
 
         BulletCtrl bulletPrefab = BulletSpawnerCtrl.Instance.Spawner.PoolPrefabs.GetByName(this.bulletName);
+        Debug.Log(bulletPrefab.name);
         BulletCtrl newBullet = BulletSpawnerCtrl.Instance.Spawner.Spawn(bulletPrefab, firePoint.transform.position);
         newBullet.transform.rotation = Quaternion.LookRotation(rotatorDirection.normalized);
         newBullet.SetActive(true);
