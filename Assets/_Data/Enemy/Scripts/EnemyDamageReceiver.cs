@@ -1,9 +1,11 @@
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class EnemyDamageReceiver : DamageReceiver
 {
     [Header("Enemy")]
     [SerializeField] protected EnemyCtrl ctrl;
+    protected float forceAmount = 5.0f;
 
     protected virtual void LateUpdate()
     {
@@ -32,11 +34,32 @@ public class EnemyDamageReceiver : DamageReceiver
     {
         base.OnDead();
         this.DropItems();
+        Invoke(nameof(this.Despawn), 4f);
     }
 
     protected virtual void DropItems()
     {
-        ItemCode itemCode = ItemCode.Gold;
-        InventoryManager.Instance.AddItem(itemCode, 1);
+        this.DropItem(ItemCode.Gold);
+        this.DropItem(ItemCode.PlayerExp);
+    }
+
+    protected virtual void DropItem(ItemCode itemCode)
+    {
+        ItemDropCtrl prefab = ItemDropSpawnerCtrl.Instance.Spawner.PoolPrefabs.GetByName(itemCode.ToString());
+        ItemDropCtrl newItemDrop = ItemDropSpawnerCtrl.Instance.Spawner.Spawn(prefab);
+
+        Vector3 dropPosition = transform.position;
+        dropPosition.y += 2;
+        newItemDrop.transform.position = dropPosition;
+        newItemDrop.SetActive(true);
+
+        Vector3 randomDirection = Random.onUnitSphere;
+        randomDirection.y = Mathf.Abs(randomDirection.y);
+        newItemDrop.Rigidbody.AddForce(randomDirection * forceAmount, ForceMode.Impulse);
+    }
+
+    protected virtual void Despawn()
+    {
+        this.ctrl.Despawn.DoDespawn();
     }
 }

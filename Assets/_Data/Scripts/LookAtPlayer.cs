@@ -14,7 +14,7 @@ public class LookAtPlayer : SaiBehaviour
     {
         if (this.playerCamera != null) return;
         this.playerCamera = GameObject.Find("ThirdPersonCamera").transform;
-        Debug.Log(transform.name + ": LoadCamera", gameObject);
+        //Debug.Log(transform.name + ": LoadCamera", gameObject);
     }
 
     void Update()

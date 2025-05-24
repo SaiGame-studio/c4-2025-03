@@ -25,6 +25,7 @@ public class TurretTargeting : SaiBehaviour
 
     protected virtual void AddEnemy(Collider other)
     {
+        //TODO: use EnemyCtrl, don't use Targetable
         Targetable targetable = other.GetComponent<Targetable>();
         if (targetable == null) return;
         this.enemies.Add(targetable);

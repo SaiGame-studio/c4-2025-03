@@ -6,6 +6,9 @@ public class TurretCtrl : SaiBehaviour
     [SerializeField] protected TurretTargeting turretTargeting;
     public TurretTargeting TurretTargeting => turretTargeting;
 
+    [SerializeField] protected TurretShooting turretShooting;
+    public TurretShooting TurretShooting => turretShooting;
+
     [SerializeField] protected Transform model;
     [SerializeField] protected Transform rotator;
     public Transform Rotator => rotator;
@@ -18,7 +21,15 @@ public class TurretCtrl : SaiBehaviour
         base.LoadComponents();
         this.LoadModel();
         this.LoadTurretTargeting();
+        this.LoadTurretShootings();
         this.LoadFirePoints();
+    }
+
+    protected virtual void LoadTurretShootings()
+    {
+        if (this.turretShooting != null) return;
+        this.turretShooting = GetComponentInChildren<TurretShooting>();
+        Debug.Log(transform.name + ": LoadTurretShootings", gameObject);
     }
 
     protected virtual void LoadModel()

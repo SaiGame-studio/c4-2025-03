@@ -1,10 +1,8 @@
 using Invector.vCharacterController;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public class PlayerCtrl : SaiBehaviour
+public class PlayerCtrl : SaiSingleton<PlayerCtrl>
 {
     [SerializeField] protected WeaponsCtrl weaponsCtrl;
     public WeaponsCtrl WeaponsCtrl => weaponsCtrl;
@@ -22,6 +20,9 @@ public class PlayerCtrl : SaiBehaviour
     [SerializeField] protected Rig aimingRig;
     public Rig AimingRig => aimingRig;
 
+    [SerializeField] protected PlayerLevel level;
+    public PlayerLevel Level => level;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -30,6 +31,14 @@ public class PlayerCtrl : SaiBehaviour
         this.LoadCrosshairPointer();
         this.LoadWeapons();
         this.LoadAimingRig();
+        this.LoadLevel();
+    }
+
+    protected virtual void LoadLevel()
+    {
+        if (this.level != null) return;
+        this.level = GetComponentInChildren<PlayerLevel>();
+        Debug.Log(transform.name + ": LoadLevel", gameObject);
     }
 
     protected virtual void LoadWeapons()

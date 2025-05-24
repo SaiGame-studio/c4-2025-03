@@ -3,9 +3,11 @@ using UnityEngine.AI;
 
 public class EnemyCtrl : PoolObj
 {
+    [Header("Enemy")]
     [SerializeField] protected NavMeshAgent agent;
     public NavMeshAgent Agent => agent;
 
+    [SerializeField] protected Transform model;
     [SerializeField] protected Animator animator;
     public Animator Animator => animator;
 
@@ -14,6 +16,11 @@ public class EnemyCtrl : PoolObj
 
     [SerializeField] protected EnemyMoving moving;
     public EnemyMoving Moving => moving;
+
+    protected virtual void OnEnable()
+    {
+        this.Reborn();
+    }
 
 
     protected override void LoadComponents()
@@ -50,12 +57,18 @@ public class EnemyCtrl : PoolObj
     protected virtual void LoadAnimator()
     {
         if (this.animator != null) return;
-        this.animator = transform.Find("Model").GetComponent<Animator>();
+        this.model = transform.Find("Model");
+        this.animator = this.model.GetComponent<Animator>();
         Debug.LogWarning(transform.name + ": LoadAnimator", gameObject);
     }
 
     public override string GetName()
     {
         return "Enemy";
+    }
+
+    protected virtual void Reborn()
+    {
+        this.model.transform.localPosition = Vector3.zero;
     }
 }

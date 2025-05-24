@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class PoolObj : SaiBehaviour 
 {
+    [Header("Pool Obj")]
     [SerializeField] protected DespawnBase despawn;
     public DespawnBase Despawn => despawn;
 
@@ -17,6 +18,6 @@ public abstract class PoolObj : SaiBehaviour
     {
         if (this.despawn != null) return;
         this.despawn = transform.GetComponentInChildren<DespawnBase>();
-        //Debug.Log(transform.name + ": LoadDespawn", gameObject);
+        Debug.Log(transform.name + ": LoadDespawn", gameObject);
     }
 }
