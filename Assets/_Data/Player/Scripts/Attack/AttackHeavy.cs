@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackHeavy : AttackAbstract
 {
-    [SerializeField] protected string bulletName = "BulletHeavy";
+    [SerializeField] protected string bulletName = "Projectile_3";
     [SerializeField] protected float timer = 0;
     [SerializeField] protected float delay = 1;
 
@@ -23,7 +23,6 @@ public class AttackHeavy : AttackAbstract
         Vector3 rotatorDirection = (startPoint - endPoint).normalized;
 
         BulletCtrl bulletPrefab = BulletSpawnerCtrl.Instance.Spawner.PoolPrefabs.GetByName(this.bulletName);
-        Debug.Log(bulletPrefab.name);
         BulletCtrl newBullet = BulletSpawnerCtrl.Instance.Spawner.Spawn(bulletPrefab, firePoint.transform.position);
         newBullet.transform.rotation = Quaternion.LookRotation(rotatorDirection.normalized);
         newBullet.SetActive(true);
