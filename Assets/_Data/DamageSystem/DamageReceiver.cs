@@ -24,8 +24,7 @@ public class DamageReceiver : SaiBehaviour
     protected virtual void ApplyDamage(Collider trigger)
     {
         if (!this.IsAlive()) return;
-
-        BulletDamageSender damageSender = trigger.GetComponent<BulletDamageSender>();
+        DamageSender damageSender = trigger.GetComponent<DamageSender>();
         if (damageSender == null) return;
         damageSender.Despawn();
         this.Deduct(damageSender.GetDamage());

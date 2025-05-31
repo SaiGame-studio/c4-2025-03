@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DamageSender : SaiBehaviour
+public abstract class DamageSender : SaiBehaviour
 {
     [SerializeField] protected int damage = 1;
 
@@ -8,4 +8,6 @@ public class DamageSender : SaiBehaviour
     {
         return this.damage;
     }
+
+    public abstract void Despawn();
 }
