@@ -75,6 +75,11 @@ public class TurretShooting : SaiBehaviour
         //Transform oldBullet = Instantiate(this.oldBulletPrefab, firePoint.transform.position, Quaternion.identity);
         //oldBullet.rotation = Quaternion.LookRotation(rotatorDirection.normalized);
 
+        this.SpawnBullet(firePoint, rotatorDirection);
+    }
+
+    protected virtual void SpawnBullet(FirePoint firePoint, Vector3 rotatorDirection)
+    {
         BulletCtrl newBullet = BulletSpawnerCtrl.Instance.Spawner.Spawn(this.bulletPrefab, firePoint.transform.position);
         newBullet.transform.rotation = Quaternion.LookRotation(rotatorDirection.normalized);
         newBullet.SetActive(true);

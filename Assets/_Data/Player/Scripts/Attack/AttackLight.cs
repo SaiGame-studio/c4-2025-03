@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GridBrushBase;
 
 public class AttackLight : AttackAbstract
 {
@@ -10,6 +7,7 @@ public class AttackLight : AttackAbstract
     [SerializeField] protected string muzzleName = "Muzzle_2";
     [SerializeField] protected float timer = 0;
     [SerializeField] protected float delay = 1;
+    [SerializeField] protected SoundCode shootSfxName = SoundCode.LaserOneShoot;
 
     protected override void Attacking()
     {
@@ -21,11 +19,12 @@ public class AttackLight : AttackAbstract
         FirePoint firePoint = this.GetFirePoint();
 
         Vector3 startPoint = this.playerCtrl.CrosshairPointer.transform.position;
-        Vector3 endPoint = firePoint.transform.position; 
+        Vector3 endPoint = firePoint.transform.position;
         Vector3 rotatorDirection = (startPoint - endPoint).normalized;
 
         this.SpawnBullet(firePoint, rotatorDirection);
         this.SpawnMuzzle(firePoint, rotatorDirection);
+        this.SpawnSound();
     }
 
     protected virtual void SpawnMuzzle(FirePoint firePoint, Vector3 rotatorDirection)
@@ -48,5 +47,13 @@ public class AttackLight : AttackAbstract
     protected virtual FirePoint GetFirePoint()
     {
         return this.playerCtrl.WeaponsCtrl.GetCurrent().FirePoint;
+    }
+
+    protected virtual void SpawnSound()
+    {
+        Vector3 position = transform.position;
+        SFXCtrl newSfx = SoundManager.Instance.CreateSfx(this.shootSfxName);
+        newSfx.transform.position = position;
+        newSfx.gameObject.SetActive(true);
     }
 }
