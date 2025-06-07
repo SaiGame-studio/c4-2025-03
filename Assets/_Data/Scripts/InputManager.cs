@@ -10,11 +10,20 @@ public class InputManager : SaiSingleton<InputManager>
     [SerializeField] protected bool isToogleInventory = false;
     public bool IsToogleInventory => isToogleInventory;
 
+    [SerializeField] protected bool isToogleMussic = false;
+    public bool IsToogleMusic => isToogleMussic;
+
     private void Update()
     {
         this.CheckAiming();
         this.CheckAttacking();
         this.OpenInventory();
+        this.MussicToogle();
+    }
+
+    protected virtual void MussicToogle()
+    {
+        this.isToogleMussic = Input.GetKeyUp(KeyCode.M);
     }
 
     protected virtual void OpenInventory()
