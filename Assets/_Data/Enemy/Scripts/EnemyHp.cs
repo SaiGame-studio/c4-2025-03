@@ -19,6 +19,8 @@ public class EnemyHp : SliderHp
 
     protected override float GetValue()
     {
+        if(this.enemyCtrl.DamageReceiver == null) return 1;
+
         return (float)this.enemyCtrl.DamageReceiver.CurrentHp / (float)this.enemyCtrl.DamageReceiver.MaxHp;
     }
 }

@@ -58,7 +58,7 @@ public class EnemyCtrl : PoolObj
     {
         if (this.animator != null) return;
         this.model = transform.Find("Model");
-        this.animator = this.model.GetComponent<Animator>();
+        if(this.model != null) this.animator = this.model.GetComponent<Animator>();
         Debug.LogWarning(transform.name + ": LoadAnimator", gameObject);
     }
 
@@ -69,7 +69,9 @@ public class EnemyCtrl : PoolObj
 
     protected virtual void Reborn()
     {
-        this.model.transform.localPosition = Vector3.zero;
+        if (this.model == null) return;
+
+        this.model.transform.localPosition = new Vector3(0,-0.1f,0);
         this.model.transform.localRotation = Quaternion.identity;
     }
 }
