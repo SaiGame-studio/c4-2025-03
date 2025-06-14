@@ -96,7 +96,7 @@ public class TurretShooting : SaiBehaviour
     protected virtual bool IsTargetDead()
     {
         if (this.target == null) return true;
-        if (this.target.DamageReceiver.IsAlive()) return false;
+        if (this.target.DamageReceiver != null && this.target.DamageReceiver.IsAlive()) return false;
         this.totalKill++;
         this.target = null;
         return true;

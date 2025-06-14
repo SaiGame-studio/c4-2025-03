@@ -55,7 +55,7 @@ public class EnemyMoving : SaiBehaviour
     {
         bool canMove = true;
         if (this.pointToGo == null) canMove = false;
-        if (!this.ctrl.DamageReceiver.IsAlive()) canMove = false;
+        if (this.ctrl.DamageReceiver != null && !this.ctrl.DamageReceiver.IsAlive()) canMove = false;
 
         return canMove;
     }
@@ -68,7 +68,7 @@ public class EnemyMoving : SaiBehaviour
     protected virtual void UpdateAnimator()
     {
         this.IsWalking = !this.ctrl.Agent.isStopped;
-        this.ctrl.Animator.SetBool("IsWalking", this.IsWalking);
+        if(this.ctrl.Animator != null) this.ctrl.Animator.SetBool("IsWalking", this.IsWalking);
     }
 
     protected virtual void LoadNextPoint()

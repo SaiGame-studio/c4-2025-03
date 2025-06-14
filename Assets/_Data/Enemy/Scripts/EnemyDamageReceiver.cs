@@ -26,6 +26,7 @@ public class EnemyDamageReceiver : DamageReceiver
 
     protected virtual void UpdateDeadAnimation()
     {
+        if (this.ctrl.Animator == null) return;
         this.ctrl.Animator.SetBool("IsAlive", this.isAlive);
     }
 
@@ -33,7 +34,7 @@ public class EnemyDamageReceiver : DamageReceiver
     {
         base.OnDead();
         this.DropItems();
-        Invoke(nameof(this.Despawn), 4f);
+        Invoke(nameof(this.Despawn), 12f);
     }
 
     protected virtual void DropItems()
